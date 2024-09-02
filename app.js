@@ -1,8 +1,11 @@
 const express = require('express');
 const app = express();
 const hapi = require('@hapi/hapi');
+const basicAuth = require('basic-auth')
 
 require('dotenv').config();
+const SWAGGER_UNAME = process.env.SWAGGER_UNAME
+const SWAGGER_PASSWORD = process.env.SWAGGER_PASSWORD
 
 const PORT = process.env.PORT;
 // const sequelize = require('./config/sequelize')
@@ -21,6 +24,20 @@ async function init() {
         host: 'localhost',
         port: PORT,
     })
+    server.ext('onRequest', (req, h) => {
+        const route = req.url.pathname;
+        if (route === '/documentation') {
+            const user = basicAuth(req);
+
+            if (user === undefined || user.name !== SWAGGER_UNAME || user.pass !== SWAGGER_PASSWORD) {
+                return h.response('Unauthorized')
+                    .code(401)
+                    .header('WWW-Authenticate', 'Basic realm="Node"')
+                    .takeover();
+            }
+        }
+        return h.continue;
+    });
     const swaggerOptions = {
         info: {
             title: 'Sequelize Practice',
