@@ -1,0 +1,1 @@
+# hapi_sequelize_practice
