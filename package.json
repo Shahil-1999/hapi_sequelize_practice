@@ -1,0 +1,32 @@
+{
+  "name": "sequelize_prac",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "migrate:up": "sequelize --options-path ./database/.sequelize-development-migration --env development db:migrate",
+    "migrate:down": "sequelize --options-path ./database/.sequelize-development-migration --env development db:migrate:undo",
+    "migrate:status": "sequelize --options-path ./database/.sequelize-development-migration --env development db:migrate:status",
+    "migrate:create": "sequelize --options-path ./database/.sequelize-development-migration --env development migration:generate --name",
+    "migrate:undo": "sequelize --options-path ./database/.sequelize-development-migration --env development migrate:undo --name"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/hapi": "^21.3.10",
+    "@hapi/inert": "^7.1.0",
+    "@hapi/vision": "^7.0.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "hapi-swagger": "^17.3.0",
+    "joi": "^17.13.3",
+    "mysql2": "^3.11.0",
+    "nodemon": "^3.1.4",
+    "sequelize": "^6.37.3"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.6.2"
+  }
+}
