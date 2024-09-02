@@ -1,12 +1,13 @@
 const { Sequelize } = require('sequelize');
-require('dotenv').config(); 
+// require('dotenv').config(); 
+const config = require('./config')
 const sequelize = new Sequelize(
-  process.env.DATABASE,
-  process.env.username,
-  process.env.password,
+  config.development.database,
+  config.development.username,
+  config.development.password,
   {
-    dialect: process.env.DIALECT,
-    host: process.env.HOST,
+    dialect: config.development.dialect,
+    host: config.development.host,
     port: 3306,
     logging: false, 
   }

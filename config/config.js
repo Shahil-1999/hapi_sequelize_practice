@@ -1,12 +1,11 @@
-require('dotenv').config();
-
+require("dotenv").config(); // Load environment variables
 
 module.exports = {
     development: {
-        username: process.env.username,
-        password: process.env.password,
+        username: 'root',
         database: process.env.DATABASE,
+        password: process.env.PASSWORD,
+        dialect: process.env.DIALECT,
         host: process.env.HOST,
-        dialect: process.env.DIALECT
-    }
+    },
 };
